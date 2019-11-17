@@ -131,11 +131,11 @@ Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
         tmp->right = NULL;
         return tmp;
     }
-    else
-    {
+   else
+  {
     
-        root->left = insertHelper(new_data, root->left);
-    }
+      root->left = insertHelper(new_data, root->left);
+  }
 }
 
 template <class T>
