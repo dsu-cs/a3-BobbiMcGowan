@@ -46,6 +46,9 @@ private:
     int node_count;
     //prototype for helper
    Node<T> *insertHelper(T, Node<T> *node);
+   int traversal_data;
+   Node<T> *succParent;
+   Node<T> succ;
 };
 
 template <class T>
@@ -75,7 +78,7 @@ std::vector<T> *BST<T>::inorder()
        return;
 
        inOrder(root->left);//should N<T> be root?
-       cout<<root->data<< " ";
+       cin<<root-> T &traversal_data;
        inOrder(root->right);
 
 }
@@ -90,7 +93,7 @@ std::vector<T> *BST<T>::preorder()
     if(root == NULL)
         return;
         
-        cout<<root->data<< " ";
+        cin<<root->T &traversal_data;
         preOrder(root->left);
         preOrder(root->right);
 
@@ -107,7 +110,7 @@ std::vector<T> *BST<T>::postorder()
 
       postOrder(root->left);
       postOrder(root->right);
-      cout<<root->data<< " ";
+      cin<<root->T &traversal_data;
 
     return vec;
 }
@@ -152,16 +155,70 @@ Node<T> *BST<T>::search(T val)
         return search(root->left, val);
     }
     
-
-
 }
 
 template <class T>
 void BST<T>::remove(T val)
 {
+    if(root == NULL)
+    return;
+
+    if(root->val > val)
+    {
+        root->left = remove(root->right, val);
+        return;
+    }
+
+    else if(root->val < val)
+    {
+        root->right = delete(root->right,val);
+        return;
+    }
+
+    if(root->left == NULL)
+    {
+        Node<T> *tmp = root->right;
+        delete root;
+        return;
+    }
+    else if(root->right == NULL)
+    {
+        Node<T> *tmp = root->left;
+        delete root;
+        return;
+    }
+    
+    else
+    {
+        Node<T> *succParent = root->right;
+
+        Node<T> *succ = root->right;
+
+        While(succ->left != NULL);
+        {
+            succParent = succ;
+            succ = succ->left;
+        }
+
+        succParent->left = succ->right;
+
+        root->val = succ->val;
+
+        delete succ;
+        return;
+    }
+    
+
 }
 
 template <class T>
 int BST<T>::get_size()
 {
+    if(root == NULL)
+    return 0;
+
+    else
+    {
+       return(node_count(root->left) + 1 + node_count(root->right));
+    }
 }
