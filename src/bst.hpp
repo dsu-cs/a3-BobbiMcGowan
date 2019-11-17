@@ -5,6 +5,7 @@
 #include <iostream>
 #include "node.hpp"
 #include <vector>
+using namespace std;
 
 template <class T>
 class BST
@@ -74,6 +75,7 @@ std::vector<T> *BST<T>::inorder()
        return;
 
        inOrder(root->left);//should N<T> be root?
+       cout<<root->data<< " ";
        inOrder(root->right);
 
 }
@@ -84,6 +86,14 @@ template <class T>
 std::vector<T> *BST<T>::preorder()
 {
     std::vector<T> *vec = new std::vector<T>;
+
+    if(root == NULL)
+        return;
+        
+        cout<<root->data<< " ";
+        preOrder(root->left);
+        preOrder(root->right);
+
     return vec;
 }
 
@@ -91,6 +101,13 @@ template <class T>
 std::vector<T> *BST<T>::postorder()
 {
     std::vector<T> *vec = new std::vector<T>;
+
+    if(root == NULL)
+      return;
+
+      postOrder(root->left);
+      postOrder(root->right);
+      cout<<root->data<< " ";
 
     return vec;
 }
@@ -121,6 +138,22 @@ Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
 template <class T>
 Node<T> *BST<T>::search(T val)
 {
+    if(root == NULL)
+    return;
+
+    if(root->val == val)
+    return root;
+    
+    if(root->val<val)
+    return search(root->right,val);
+
+    else
+    {
+        return search(root->left, val);
+    }
+    
+
+
 }
 
 template <class T>
