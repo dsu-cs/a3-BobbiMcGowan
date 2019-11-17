@@ -5,8 +5,9 @@
 #include <iostream>
 #include "node.hpp"
 
-template<class T>
-class BST{
+template <class T>
+class BST
+{
 public:
     // Constructor for the BST class, creates an empty tree
     BST(void);
@@ -35,80 +36,97 @@ public:
     // Gets the current number of nodes in the tree
     // returns: the number of nodes in the tree
     int get_size(void);
+
 private:
     // the root node of the tree
     Node<T> *root;
     // the number of nodes in the tree
     int node_count;
+    //prototype for helper
+    Node<T> *insertHelper(T, Node<T> *);
 };
 
-template<class T>
+template <class T>
 BST<T>::BST()
 {
     root = NULL;
     node_count = 0;
 }
 
-template<class T>
+template <class T>
 BST<T>::~BST()
 {
     root = NULL;
-    while(root != NULL)
+    while (root != NULL)
     {
         remove(root->get_data());
     }
 }
+//std::vector<T> *inorder(void);
+template <class T>
+std::vector<T> *BST<T>::inorder()
+{
+    std::vector<T> *vec = new std::vector<T>;
+{
+   if(root==NULL)
 
-template<class T>
- std::vector<T> * BST<T>::inorder()
+       return;
+
+       inOrder(Node<T>->left);//should N<T> be root?
+       inOrder(Node<T>->right);
+
+}
+    return vec;
+}
+
+template <class T>
+std::vector<T> *BST<T>::preorder()
+{
+    std::vector<T> *vec = new std::vector<T>;
+    return vec;
+}
+
+template <class T>
+std::vector<T> *BST<T>::postorder()
 {
     std::vector<T> *vec = new std::vector<T>;
 
     return vec;
 }
 
-
-template<class T>
- std::vector<T> * BST<T>::preorder()
-{
-    std::vector<T> *vec = new std::vector<T>;
-    return vec;
-}
-
-
-template<class T>
- std::vector<T> * BST<T>::postorder()
-{
-    std::vector<T> *vec = new std::vector<T>;
-
-    return vec;
-}
-
-template<class T>
+template <class T>
 void BST<T>::insert(T new_data)
 {
-
+    root = insertHelper(T new_data, root);
 }
 
+Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
+{
+    if (root == NULL)
+    {
+        Node<T> *tmp = new Node<T>;
+        tmp->new_data = new_data;
+        tmp->left = NULL;
+        tmp->right = NULL;
+        return tmp;
+    }
+    else
+    {
+        node->left = insertHelper(new_data, node->left);
+    }
+}
 
-template<class T>
+template <class T>
 Node<T> *BST<T>::search(T val)
 {
-
 }
 
-
-
-template<class T>
+template <class T>
 void BST<T>::remove(T val)
 {
-
 }
 
-
-
-template<class T>
+template <class T>
 int BST<T>::get_size()
 {
-
 }
