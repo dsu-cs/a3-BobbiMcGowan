@@ -115,9 +115,9 @@ std::vector<T> *BST<T>::postorder()
 template <class T>
 void BST<T>::insert(T new_data)
 {
-  root = insertHelper(T new_data, root);
+  root = insertHelper(new_data, root);
 }
-
+template <class T>
 Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
 {
     if (root == NULL)
