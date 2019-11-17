@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <iostream>
 #include "node.hpp"
+#include <vector>
 
 template <class T>
 class BST
@@ -43,7 +44,7 @@ private:
     // the number of nodes in the tree
     int node_count;
     //prototype for helper
-    Node<T> *insertHelper(T, Node<T> *);
+   Node<T> *insertHelper(T, Node<T> *node);
 };
 
 template <class T>
@@ -72,8 +73,8 @@ std::vector<T> *BST<T>::inorder()
 
        return;
 
-       inOrder(Node<T>->left);//should N<T> be root?
-       inOrder(Node<T>->right);
+       inOrder(root->left);//should N<T> be root?
+       inOrder(root->right);
 
 }
     return vec;
@@ -97,7 +98,7 @@ std::vector<T> *BST<T>::postorder()
 template <class T>
 void BST<T>::insert(T new_data)
 {
-    root = insertHelper(T new_data, root);
+  root = insertHelper(T new_data, root);
 }
 
 Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
@@ -112,7 +113,8 @@ Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
     }
     else
     {
-        node->left = insertHelper(new_data, node->left);
+    
+        root->left = insertHelper(new_data, root->left);
     }
 }
 
