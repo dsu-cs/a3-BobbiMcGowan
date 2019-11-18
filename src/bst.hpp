@@ -131,8 +131,8 @@ Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
     {
         Node<T> *tmp = new Node<T>;
         tmp->new_data = new_data;
-        tmp->left_node = NULL;
-        tmp->right_node= NULL;
+        tmp->left_node_ptr = NULL;// left_node_ptr and left_node do not work both are in public in node.hpp
+        tmp->right_node_ptr= NULL;
         return tmp;
     }
    else
@@ -190,7 +190,7 @@ void BST<T>::remove(T val)
         delete root;
         return;
     }
-    
+    //meant to deal with two children.
     else
     {
         Node<T> *succParent = root->get_right();
@@ -222,6 +222,6 @@ int BST<T>::get_size()
 
     else
     {
-       return(node_count(root->get_left()) + 1 + node_count(root->get_right()));
+       return(node_count(root->get_left()+1) + node_count(root->get_right()));
     }
 }
