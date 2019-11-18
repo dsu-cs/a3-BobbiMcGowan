@@ -79,7 +79,7 @@ std::vector<T> *BST<T>::inorder()
        return NULL;
 
        inOrder(root->get_left());
-       cin>>root->vec &traversal_data;
+       cin>>root->vec >>traversal_data;
        inOrder(root->get_right());
        
 }
@@ -94,7 +94,7 @@ std::vector<T> *BST<T>::preorder()
     if(root == NULL)
         return NULL;
         
-        cin>>root->vec &traversal_data;
+        cin>>root->vec>>traversal_data;
         preOrder(root->get_left());
         preOrder(root->get_right());
 
@@ -111,7 +111,7 @@ std::vector<T> *BST<T>::postorder()
 
       postOrder(root->get_left());
       postOrder(root->get_right());
-      cin>>root->vec &traversal_data;
+      cin>>root->vec>>traversal_data;
 
     return vec;
 }
@@ -127,7 +127,7 @@ Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
     if (root == NULL)
     {
         Node<T> *tmp = new Node<T>;
-        tmp->data = new_data;
+        tmp->new_data = new_data;
         tmp->left_node_ptr = NULL;
         tmp->right_node_ptr= NULL;
         return tmp;
