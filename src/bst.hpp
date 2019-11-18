@@ -77,9 +77,9 @@ std::vector<T> *BST<T>::inorder()
 
        return NULL;
 
-       inOrder(root->left);//should N<T> be root?
-       cin<<root->vec &traversal_data;
-       inOrder(root->right_node_ptr);
+       BST<T>::inOrder(root->get_left());
+       cin<<root-*vec &traversal_data;
+       BST<T>::inOrder(root->get_right());
        
 }
     return vec;
@@ -94,8 +94,8 @@ std::vector<T> *BST<T>::preorder()
         return NULL;
         
         cin<<root->vec &traversal_data;
-        preOrder(root->left_node_ptr);
-        preOrder(root->right_node_ptr);
+        preOrder(root->get_left());
+        preOrder(root->get_right());
 
     return vec;
 }
@@ -108,8 +108,8 @@ std::vector<T> *BST<T>::postorder()
     if(root == NULL)
       return NULL;
 
-      postOrder(root->left_node_ptr);
-      postOrder(root->right_node_ptr);
+      postOrder(root->get_left());
+      postOrder(root->get_right());
       cin<<root->vec &traversal_data;
 
     return vec;
@@ -127,14 +127,14 @@ Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
     {
         Node<T> *tmp = new Node<T>;
         tmp->new_data = new_data;
-        tmp->left = NULL;
-        tmp->right = NULL;
+        tmp->left_node_ptr = NULL;
+        tmp->right_node_ptr= NULL;
         return tmp;
     }
    else
   {
     
-      root->left = insertHelper(new_data, node->left);
+      root->set_left() = insertHelper(new_data, node->left_node_ptr);
   }
 }
 
@@ -148,11 +148,11 @@ Node<T> *BST<T>::search(T val)
     return root;
     
     if(root->val<val)
-    return search(root->right,val);
+    return search(root->get_right(),val);
 
     else
     {
-        return search(root->left, val);
+        return search(root->get_left(), val);
     }
     
 }
@@ -161,48 +161,48 @@ template <class T>
 void BST<T>::remove(T val)
 {
     if(root == NULL)
-    return NULL;
+    return;
 
-    if(root->val > val)
+    if(root->get_data > val)
     {
-        root->left_node_ptr = remove(root->right_node_ptr,val);
+        root->get_left() = remove(root->right_node_ptr,val);
         return;
     }
 
-    else if(root->val < val)
+    else if(root->get_data < val)
     {
-        root->right_node_ptr = delete(root->right_node_ptr, val);
+        root->get_right() = delete(root->right_node_ptr, val);
         return;
     }
 
-    if(root->left_node_ptr == NULL)
+    if(root->get_left() == NULL)
     {
-        Node<T> *tmp = root->right_node_ptr;
+        Node<T> *tmp = root->set_right();
         delete root;
         return;
     }
-    else if(root->right_node_ptr == NULL)
+    else if(root->get_right() == NULL)
     {
-        Node<T> *tmp = root->left_node_ptr;
+        Node<T> *tmp = root->set_left();
         delete root;
         return;
     }
     
     else
     {
-        Node<T> *succParent = root->right_node_ptr;
+        Node<T> *succParent = root->get_right();
 
-        Node<T> *succ = root->right_node_ptr;
+        Node<T> *succ = root->set_right();
 
-        While(succ->left_node_ptr != NULL);
+        While(succ->get_left() != NULL);
         {
             succParent = succ;
-            succ = succ->left_node_ptr;
+            succ = succ->set_left();
         }
 
-        succParent->left_node_ptr = succ->right_node_ptr;
+        succParent->set_left() = succ->set_right();
 
-        root-> val = succ-> val;
+        root->set_data = succ->get_data;
 
         delete succ;
         return;
@@ -219,6 +219,6 @@ int BST<T>::get_size()
 
     else
     {
-       return(node_count(root->left) + 1 + node_count(root->right));
+       return(node_count(root->get_left()) + 1 + node_count(root->get_right()));
     }
 }
