@@ -77,9 +77,9 @@ std::vector<T> *BST<T>::inorder()
 
        return NULL;
 
-       BST<T>::inOrder(root->get_left());
-       cin<<root-*vec &traversal_data;
-       BST<T>::inOrder(root->get_right());
+       inOrder(root->get_left());
+       cin<<root->vec &traversal_data;
+       inOrder(root->get_right());
        
 }
     return vec;
@@ -163,15 +163,15 @@ void BST<T>::remove(T val)
     if(root == NULL)
     return;
 
-    if(root->get_data > val)
+    if(root->val > val)
     {
-        root->get_left() = remove(root->right_node_ptr,val);
+        root->get_left() = remove(root->left_node_ptr,val);
         return;
     }
 
-    else if(root->get_data < val)
+    else if(root->val < val)
     {
-        root->get_right() = delete(root->right_node_ptr, val);
+        root->get_right() = remove(root->right_node_ptr, val);
         return;
     }
 
@@ -202,7 +202,7 @@ void BST<T>::remove(T val)
 
         succParent->set_left() = succ->set_right();
 
-        root->set_data = succ->get_data;
+        root->set_data() = succ->get_data();
 
         delete succ;
         return;
