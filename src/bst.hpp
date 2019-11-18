@@ -78,8 +78,8 @@ std::vector<T> *BST<T>::inorder()
        return NULL;
 
        inOrder(root->left);//should N<T> be root?
-       cin<<root-> T &traversal_data;
-       inOrder(root->right);
+       cin<<root->vec &traversal_data;
+       inOrder(root->right_node_ptr);
        
 }
     return vec;
@@ -93,9 +93,9 @@ std::vector<T> *BST<T>::preorder()
     if(root == NULL)
         return NULL;
         
-        cin<<root->T &traversal_data;
-        preOrder(root->left);
-        preOrder(root->right);
+        cin<<root->vec &traversal_data;
+        preOrder(root->left_node_ptr);
+        preOrder(root->right_node_ptr);
 
     return vec;
 }
@@ -108,9 +108,9 @@ std::vector<T> *BST<T>::postorder()
     if(root == NULL)
       return NULL;
 
-      postOrder(root->left);
-      postOrder(root->right);
-      cin<<root->T &traversal_data;
+      postOrder(root->left_node_ptr);
+      postOrder(root->right_node_ptr);
+      cin<<root->vec &traversal_data;
 
     return vec;
 }
@@ -134,7 +134,7 @@ Node<T> *BST<T>::insertHelper(T new_data, Node<T> *node)
    else
   {
     
-      root->left = insertHelper(new_data, root->left);
+      root->left = insertHelper(new_data, node->left);
   }
 }
 
@@ -165,44 +165,44 @@ void BST<T>::remove(T val)
 
     if(root->val > val)
     {
-        root->left = remove(root->right,val);
+        root->left_node_ptr = remove(root->right_node_ptr,val);
         return;
     }
 
     else if(root->val < val)
     {
-        root->right = delete(root->right, val);
+        root->right_node_ptr = delete(root->right_node_ptr, val);
         return;
     }
 
-    if(root->left == NULL)
+    if(root->left_node_ptr == NULL)
     {
-        Node<T> *tmp = root->right;
+        Node<T> *tmp = root->right_node_ptr;
         delete root;
         return;
     }
-    else if(root->right == NULL)
+    else if(root->right_node_ptr == NULL)
     {
-        Node<T> *tmp = root->left;
+        Node<T> *tmp = root->left_node_ptr;
         delete root;
         return;
     }
     
     else
     {
-        Node<T> *succParent = root->right;
+        Node<T> *succParent = root->right_node_ptr;
 
-        Node<T> *succ = root->right;
+        Node<T> *succ = root->right_node_ptr;
 
-        While(succ->left != NULL);
+        While(succ->left_node_ptr != NULL);
         {
             succParent = succ;
-            succ = succ->left;
+            succ = succ->left_node_ptr;
         }
 
-        succParent->left = succ->right;
+        succParent->left_node_ptr = succ->right_node_ptr;
 
-        root->val = succ->val;
+        root-> val = succ-> val;
 
         delete succ;
         return;
