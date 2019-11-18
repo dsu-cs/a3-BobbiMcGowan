@@ -75,12 +75,12 @@ std::vector<T> *BST<T>::inorder()
 {
    if(root==NULL)
 
-       return;
+       return NULL;
 
        inOrder(root->left);//should N<T> be root?
        cin<<root-> T &traversal_data;
        inOrder(root->right);
-
+       
 }
     return vec;
 }
@@ -91,7 +91,7 @@ std::vector<T> *BST<T>::preorder()
     std::vector<T> *vec = new std::vector<T>;
 
     if(root == NULL)
-        return;
+        return NULL;
         
         cin<<root->T &traversal_data;
         preOrder(root->left);
@@ -106,7 +106,7 @@ std::vector<T> *BST<T>::postorder()
     std::vector<T> *vec = new std::vector<T>;
 
     if(root == NULL)
-      return;
+      return NULL;
 
       postOrder(root->left);
       postOrder(root->right);
@@ -142,7 +142,7 @@ template <class T>
 Node<T> *BST<T>::search(T val)
 {
     if(root == NULL)
-    return;
+    return NULL;
 
     if(root->val == val)
     return root;
@@ -161,17 +161,17 @@ template <class T>
 void BST<T>::remove(T val)
 {
     if(root == NULL)
-    return;
+    return NULL;
 
     if(root->val > val)
     {
-        root->left = remove(root->right, val);
+        root->left = remove(root->right,val);
         return;
     }
 
     else if(root->val < val)
     {
-        root->right = delete(root->right,val);
+        root->right = delete(root->right, val);
         return;
     }
 
